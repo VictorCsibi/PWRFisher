@@ -33,7 +33,7 @@ function moreAfterCatch(f, net) {
   if (F_.mast[rod] < 300 && Math.floor(F_.mast[rod] / 50) > Math.floor((F_.mast[rod] - n) / 50)) toast("ROD MASTERY UP!  +3% sell value with this rod", "#e3c8ff");
   const cm = Math.round(f.len * (g.sizeMul || 1) * (g.big ? 1.3 : 1) * 0.9), rec = F_.records[f.name]; // personal bests
   if (!rec || cm > rec.cm) { F_.records[f.name] = { cm }; if (rec && g.banner) g.banner.sub += "  -  NEW RECORD " + cm + " cm!"; }
-  F_.stats.bestCatch = Math.max(F_.stats.bestCatch || 0, net);
+  if (net > (F_.stats.bestCatch || 0)) { F_.stats.bestCatch = net; F_.stats.bestCatchFish = f.name; F_.stats.bestCatchRarity = f.rarity; F_.lbSubmitted = false; } // a new personal best can be sent to the leaderboard
   const mk = marketMult(f.name); if (g.banner && Math.abs(mk - 1) >= 0.1) g.banner.sub += `  -  market ${mk > 1 ? "+" : ""}${Math.round((mk - 1) * 100)}%`;
   if (g.mystery && g.banner) g.banner.text = "MYSTERY! " + g.banner.text;
   const o = F_.order; // fish orders

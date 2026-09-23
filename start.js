@@ -158,11 +158,11 @@ function startGame() {
   if (typeof showTutorial === "function") showTutorial(); // first time only
 }
 function openMenu() { // back to the start screen (from the MENU button in game)
-  closeModal(); save(); menu.pick = state.map; menu.open = true; menuEl().hidden = false; document.getElementById("mapPick").hidden = true;
+  closeModal(); save(); menu.pick = state.map; menu.open = true; menuEl().hidden = false; document.getElementById("mapPick").hidden = true; document.getElementById("leadPick").hidden = true;
 }
-document.getElementById("mStart").onclick = () => { if (!document.getElementById("mapPick").hidden) return; showMapPicker(); };
-document.getElementById("mShop").onclick = () => { document.getElementById("mapPick").hidden = true; openModal("rod", "shop"); };
-document.getElementById("mSet").onclick = () => { document.getElementById("mapPick").hidden = true; openModal("settings", "settings"); };
+document.getElementById("mStart").onclick = () => { if (!document.getElementById("mapPick").hidden) return; document.getElementById("leadPick").hidden = true; showMapPicker(); };
+document.getElementById("mShop").onclick = () => { document.getElementById("mapPick").hidden = true; document.getElementById("leadPick").hidden = true; openModal("rod", "shop"); };
+document.getElementById("mSet").onclick = () => { document.getElementById("mapPick").hidden = true; document.getElementById("leadPick").hidden = true; openModal("settings", "settings"); };
 document.getElementById("mapGo").onclick = startGame;
 document.getElementById("menuBtn").onclick = openMenu;
 window.addEventListener("resize", menuLayout); menuLayout(); requestAnimationFrame(menuLoop);
