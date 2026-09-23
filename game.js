@@ -3,7 +3,15 @@
 // ---------- Config ----------
 // World is 1280 wide; its height follows the window so the game fills the whole screen (see layout()).
 const W = 1280;
-let H = 720, WATER_Y = 260, DECK_Y = 250;
+let H = 720, WATER_Y = 260, DECK_Y = 250, phoneZoomOn = false;
+// on phone, zoom in on the dock, but always widen out again to keep the current bobber/cast fully in view
+function computePhoneZoom() {
+  if (!phoneZoomOn) return null;
+  const farX = (g.mode === "idle" || g.mode === "windup" || !g.land) ? 260 : g.land.x + 70;
+  const z = clamp(W / (farX + 30), 1, 1.9); // never zoom below 1x (that would shrink things instead)
+  if (z <= 1.001) return null;
+  return { z, zx: -10, zy: DECK_Y + 30 };
+}
 const INK = "#1b1b2f";
 const SAVE_KEY = "pwrfisher_save_v1";
 const BUCKET_X = 46;
@@ -270,6 +278,8 @@ function layout() {
   placeSideButtons();
   HAND.y = DECK_Y - 40;
   document.getElementById("stage").style.setProperty("--u", (Math.max(vw, 760) / W) + "px"); // on a phone-width screen, scale the UI as if the screen were 640px wide so text and buttons stay readable
+  // on a narrow phone screen, zoom the scene in on the player so he (and the water right around him) is bigger and easier to see
+  phoneZoomOn = vw <= 520 && vh > vw;
 
   // ocean floor decorations and ambient fish depend on the height
   const rnd = (i, k) => { const v = Math.sin(i * 12.9898 + k * 78.233) * 43758.5453; return v - Math.floor(v); };
@@ -1592,6 +1602,7 @@ function draw() {
   // scene is authored dock-left; mirror it so the dock sits on the right
   ctx.save(); ctx.translate(W, 0); ctx.scale(-1, 1);
   { const z = g.zoom || 1; if (z > 1.001 && g.land) { const zx = g.land.x, zy = WATER_Y + 90; ctx.translate(zx, zy); ctx.scale(z, z); ctx.translate(-zx, -zy); } } // a little zoom when a fish bites
+  const pz = computePhoneZoom(); if (pz) { ctx.translate(pz.zx, pz.zy); ctx.scale(pz.z, pz.z); ctx.translate(-pz.zx, -pz.zy); } // phones: zoom in on the player, but ease back out to keep the current cast/bobber on screen (only affects this drawing, not clicks or the HUD)
   drawBackground();
   // boats and ice floes rock on the waves; the dock and the volcano pier do not
   const M = curMap(), bob = deckBob(), whole = !!(M.bob && M.bob.whole), buckMove = !!(M.bob && M.bob.bucket);
