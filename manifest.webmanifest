@@ -1,0 +1,16 @@
+{
+  "name": "PWR Fishing",
+  "short_name": "PWR Fishing",
+  "start_url": "./index.html",
+  "display": "fullscreen",
+  "background_color": "#1b2a5a",
+  "theme_color": "#2b6ad8",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

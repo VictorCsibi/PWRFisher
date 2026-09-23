@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#2b6ad8">
+<title>PWR Fisher</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Fredoka:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="stage">
+  <canvas id="game" width="1280" height="720"></canvas>
+
+  <div class="bar">
+    <button id="shopBtn" class="big shop">SHOP</button>
+    <button id="rewBtn" class="big rew">REWARDS</button>
+    <button id="boostBtn" class="big boost">BOOSTS</button>
+    <button id="colBtn" class="big fishes">FISH BOOK</button>
+    <button id="setBtn" class="big time">SETTINGS</button>
+    <button id="modeBtn" class="big mode">AUTO</button>
+    <button id="menuBtn" class="big home">MENU</button>
+  </div>
+
+  <!-- story dialogue (one-time) -->
+  <div id="story" class="story" hidden>
+    <div id="bubble" class="bubble">
+      <div id="storyWho" class="who"></div>
+      <p id="storyText"></p>
+      <div id="storyChoices" class="choices" hidden>
+        <button data-c="yes" class="yes">Yes, join!</button>
+        <button data-c="no" class="no">No thanks</button>
+      </div>
+      <div class="nav">
+        <button id="storyBack" class="arrow left" aria-label="Back"></button>
+        <span id="storyPage"></span>
+        <button id="storyNext" class="arrow right" aria-label="Next"></button>
+      </div>
+    </div>
+  </div>
+
+  <button id="licWarn" class="licwarn" hidden></button>
+
+  <!-- fishing license office and jail -->
+  <div id="license" class="overlay" hidden>
+    <div class="lcard">
+      <h3 id="licTitle"></h3>
+      <canvas id="licCard" width="320" height="190"></canvas>
+      <p id="licText"></p>
+      <div id="licTimerWrap" class="ltimer" hidden><i id="licTimer"></i><span id="licTimerText"></span></div>
+      <button id="licBtn" class="yes"></button>
+    </div>
+  </div>
+  <div id="jail" class="overlay" hidden>
+    <div class="lcard jailcard">
+      <h3>BUSTED! GEAR CONFISCATED</h3>
+      <canvas id="jailCard" width="320" height="200"></canvas>
+      <p id="jailText"></p>
+      <button id="jailBtn" class="no">OK - GET A NEW LICENSE</button>
+    </div>
+  </div>
+
+  <div id="resetAsk" class="overlay" style="z-index:30" hidden>
+    <div class="lcard">
+      <h3>ARE YOU SURE?</h3>
+      <p>This wipes <b>everything</b>: money, gear, maps, Fish Book, rank, rewards, pets and Legend stars. You start again from the very beginning. This cannot be undone.</p>
+      <button id="resetYes" class="no">YES, RESET EVERYTHING</button>
+      <p></p>
+      <button id="resetNo">NO, KEEP MY GAME</button>
+    </div>
+  </div>
+
+  <div id="soundHint" class="hint">Click anywhere to turn on sound</div>
+
+  <!-- the start screen -->
+  <div id="menu" class="menuscreen">
+    <canvas id="menuCanvas" width="1280" height="720"></canvas>
+    <h1 class="bigtitle">PWR <span>FISHING</span></h1>
+    <div class="menubtns">
+      <button id="mStart" class="mbtn go">START</button>
+      <button id="mShop" class="mbtn shop">SHOP</button>
+      <button id="mSet" class="mbtn set">SETTINGS</button>
+    </div>
+    <div id="mapPick" class="mappick" hidden>
+      <h3>CHOOSE YOUR MAP <small>(every map is free - each has ups and downs)</small></h3>
+      <div id="mapGrid" class="mapgrid"></div>
+      <button id="mapGo" class="mapgo">GO FISHING!</button>
+    </div>
+  </div>
+
+  <!-- the shop opens down in the ocean -->
+  <div id="modal" class="panel" hidden>
+    <header>
+      <nav id="tabs" class="mtitle"></nav>
+      <span id="modalMoney" class="money"></span>
+      <button id="closeBtn" class="close">X</button>
+    </header>
+    <div id="shopSide" class="shopside" hidden></div>
+    <button id="navL" class="navarrow left" aria-label="Previous" hidden>&#9664;</button>
+    <button id="navR" class="navarrow right" aria-label="Next" hidden>&#9654;</button>
+    <div id="modalBody" class="body"></div>
+  </div>
+</div>
+<script src="audio.js"></script>
+<script src="items.js"></script>
+<script src="items2.js"></script>
+<script src="items3.js"></script>
+<script src="items4.js"></script>
+<script src="maps.js"></script>
+<script src="maps2.js"></script>
+<script src="ocean.js"></script>
+<script src="story.js"></script>
+<script src="ranks.js"></script>
+<script src="rewards.js"></script>
+<script src="license.js"></script>
+<script src="junk.js"></script>
+<script src="fun.js"></script>
+<script src="start.js"></script>
+<script src="maps3.js"></script>
+<script src="more.js"></script>
+<script src="extra.js"></script>
+<script src="game.js"></script>
+<script>if ("serviceWorker" in navigator && location.protocol.startsWith("http")) navigator.serviceWorker.register("sw.js").catch(function () {});</script>
+</body>
+</html>
