@@ -135,16 +135,31 @@ function menuLoop(now) {
   if (!menu.open) return;
   try { const cv = document.getElementById("menuCanvas"); if (cv) menuDraw(cv.getContext("2d"), cv.width, cv.height, now / 1000); } catch (e) {}
 }
+function drawLockOverlay(cx, w, h) {
+  cx.fillStyle = "rgba(10,8,20,.72)"; cx.fillRect(0, 0, w, h);
+  cx.save(); cx.translate(w / 2, h / 2 - 6); cx.fillStyle = "#fff"; cx.strokeStyle = "#fff"; cx.lineWidth = 4;
+  cx.beginPath(); cx.arc(0, -6, 16, Math.PI, 0); cx.stroke();
+  cx.beginPath(); cx.roundRect(-24, -6, 48, 38, 6); cx.fill();
+  cx.fillStyle = "#221a38"; cx.beginPath(); cx.arc(0, 12, 5, 0, 7); cx.fill();
+  cx.restore();
+}
 function showMapPicker() {
   closeModal(); menu.pick = menu.pick || state.map;
+  if (MAPS[menu.pick] && MAPS[menu.pick].lock && !MAPS[menu.pick].lock.ok()) menu.pick = state.map; // don't leave a locked card pre-selected
   const grid = document.getElementById("mapGrid"); grid.innerHTML = "";
   for (const id of MAP_ORDER) {
-    const M = MAPS[id], T = MAP_TRAITS[id], card = document.createElement("div");
-    card.className = "mcard" + (menu.pick === id ? " sel" : "");
-    const c = document.createElement("canvas"); c.width = 400; c.height = 220; drawMapIcon(c.getContext("2d"), id); card.appendChild(c);
-    const count = FISH.filter(f => f.maps.includes(id)).length;
-    card.insertAdjacentHTML("beforeend", `<b>${M.name}</b><small class="bl">${M.blurb} ${count} kinds of fish.</small>` + T.ups.map(u => `<span class="up">&#9650; ${u}</span>`).join("") + T.downs.map(d => `<span class="dn">&#9660; ${d}</span>`).join(""));
-    card.onclick = () => { menu.pick = id; showMapPicker(); };
+    const M = MAPS[id], T = MAP_TRAITS[id], locked = M.lock && !M.lock.ok(), card = document.createElement("div");
+    card.className = "mcard" + (menu.pick === id ? " sel" : "") + (locked ? " locked" : "");
+    const c = document.createElement("canvas"); c.width = 400; c.height = 220;
+    const cx = c.getContext("2d"); drawMapIcon(cx, id); if (locked) drawLockOverlay(cx, 400, 220);
+    card.appendChild(c);
+    if (locked) {
+      card.insertAdjacentHTML("beforeend", `<b>${M.name}</b><small class="bl">&#128274; ${M.lock.why}</small>`);
+    } else {
+      const count = FISH.filter(f => f.maps.includes(id)).length;
+      card.insertAdjacentHTML("beforeend", `<b>${M.name}</b><small class="bl">${M.blurb} ${count} kinds of fish.</small>` + T.ups.map(u => `<span class="up">&#9650; ${u}</span>`).join("") + T.downs.map(d => `<span class="dn">&#9660; ${d}</span>`).join(""));
+      card.onclick = () => { menu.pick = id; showMapPicker(); };
+    }
     grid.appendChild(card);
   }
   document.getElementById("mapPick").hidden = false;

@@ -229,6 +229,9 @@ footer { padding: .3em .8em; text-align: right; border-top: .12em solid var(--in
 .mcard small.bl { opacity: .75; line-height: 1.15; min-height: 2.3em; }
 .mcard .up { color: #1e8f45; font-weight: 700; font-size: .86em; }
 .mcard .dn { color: #c0392b; font-weight: 700; font-size: .86em; }
+.mcard.locked { cursor: default; background: #f0f0f2; }
+.mcard.locked:hover { transform: none; }
+.mcard.locked small.bl { opacity: .85; font-weight: 600; }
 .mapgo { align-self: center; margin-top: .6em; font-size: 2em; padding: .05em 1.4em; background: #4fd66b; }
 .big.home { background: #ffb3d9; }
 #modal.startmode { left: 24%; right: 2.5%; top: 21%; bottom: 4%; width: auto; height: auto; max-width: none; max-height: none; z-index: 20; font-size: 1em; background: rgba(232, 247, 255, .95); }

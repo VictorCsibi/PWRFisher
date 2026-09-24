@@ -157,6 +157,7 @@ const FISH = [
   { name: "Void Angler",     size: 8,  minDist: 0.7,  weight: 3.5, value: 900,  color: "#2a1a4a", len: 120, ry: 0.36, special: "angler" },
   { name: "Galaxy Eel",      size: 9,  minDist: 0.8,  weight: 1.6, value: 2500, color: "#7a5aff", len: 220, ry: 0.07, special: "eel", band: "#ffffff" },
   { name: "Cosmic Whale",    size: 10, minDist: 0.9,  weight: 0.5, value: 8200, color: "#5a3ad8", len: 240, ry: 0.33, pointy: 0.15, tail: "fluke", dorsal: "none",   deco: "whale",   mouth: "whale", eye: 0.13, tailLen: 0.3, tailH: 1.3, sparkle: true },
+  { name: "Starfall Warden", size: 10, minDist: 0.9,  weight: 0.35,value: 12000,color: "#4a2a8a", len: 300, ry: 0.33, pointy: 0.15, tail: "fluke", dorsal: "none",   deco: "whale",   mouth: "whale", eye: 0.13, tailLen: 0.3, tailH: 1.3, sparkle: true },
 ];
 
 // rarity comes from how likely a fish is to bite
@@ -175,6 +176,7 @@ const MAP_POOLS = {
   pirate: ["Minnow", "Sardine", "Perch", "Clownfish", "Cutlassfish", "Barnacle Puffer", "Bass", "Skeleton Fish", "Octopus", "Tuna", "Treasure Fish", "Swordfish", "Shark", "Ghost Shark", "Giant Squid", "Kraken"],
   abyss: ["Lanternfish", "Minnow", "Bristlemouth", "Hatchetfish", "Jellyfish", "Viperfish", "Octopus", "Anglerfish", "Gulper Eel", "Manta Ray", "Giant Squid", "Oarfish", "Leviathan"],
   alien: ["Glow Minnow", "Star Guppy", "Plasma Tetra", "Asteroid Puffer", "Nebula Jelly", "UFO Squid", "Comet Ray", "Void Angler", "Galaxy Eel", "Cosmic Whale"],
+  final: ["Glow Minnow", "Star Guppy", "Plasma Tetra", "Asteroid Puffer", "Nebula Jelly", "UFO Squid", "Comet Ray", "Void Angler", "Galaxy Eel", "Cosmic Whale", "Kraken", "Leviathan", "Starfall Warden"],
   bay: ["Minnow", "Sardine", "Perch", "Bluegill", "Clownfish", "Seahorse", "Flounder", "Trout", "Bass", "Pufferfish", "Jellyfish", "Golden Fish", "Salmon", "Eel", "Catfish", "Octopus", "Tuna", "Anglerfish", "Manta Ray", "Swordfish", "Shark", "Giant Whale", "Parrotfish", "Lionfish", "Moonfish", "Sea Dragon", "Angelfish", "Blue Tang", "Barracuda", "Mahi Mahi", "Stingray", "Giant Squid"],
   lake: ["Minnow", "Perch", "Bluegill", "Koi", "Walleye", "Trout", "Pike", "Bass", "Golden Fish", "Salmon", "Eel", "Catfish", "Muskie", "Sturgeon", "Golden Koi", "Lake Serpent", "Crappie", "Rainbow Trout", "Carp", "Snakehead", "Albino Catfish", "Alligator Gar"],
   forest: ["Minnow", "Frost Perch", "Arctic Char", "Perch", "Trout", "Walleye", "Pike", "Salmon", "Eel", "Icicle Pike", "Winter Koi", "Muskie", "Aurora Salmon", "Crystal Sturgeon", "Frost Serpent", "Snow Minnow", "Brook Trout", "Arctic Grayling", "Burbot", "Frost Puffer", "Glacier Catfish"],

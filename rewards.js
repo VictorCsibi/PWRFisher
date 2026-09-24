@@ -19,7 +19,7 @@ const REWARD_GOALS = [
   ...[[1000, 5000, 80], [10000, 50000, 500], [100000, 500000, 5000], [1000000, 5000000, 50000]].map(([id, n, r]) => ({ id: "earn" + id, group: 4, name: `Earn ${m$(n)} from fish`, need: n, reward: r, val: () => state.stats.earned || 0, show: () => `${fmt(Math.min(state.stats.earned || 0, n))} / ${fmt(n)}` })),
   ...[[5, 15, 30], [20, 60, 200]].map(([id, n, r]) => ({ id: "junk" + id, group: 5, name: `Reel in ${n} pieces of junk`, need: n, reward: r, val: () => state.stats.junk || 0 })),
   ...[[5, 15, 60], [25, 60, 400]].map(([id, n, r]) => ({ id: "nap" + id, group: 5, name: `Take ${n} naps in the chair`, need: n, reward: r, val: () => state.stats.naps || 0 })),
-  ...[[2, 3, 60], [3, 5, 250], [5, 8, 1200], [8, 10, 4000], [11, 15, 12000]].map(([id, n, r]) => ({ id: "maps" + id, group: 6, name: n === 11 ? "Visit every map" : `Visit ${n} maps`, need: n, reward: r, val: () => state.ownedMaps.length })),
+  ...[[2, 3, 60], [3, 5, 250], [5, 8, 1200], [8, 10, 4000], [11, 16, 15000]].map(([id, n, r]) => ({ id: "maps" + id, group: 6, name: id === 11 ? "Visit every map" : `Visit ${n} maps`, need: n, reward: r, val: () => state.ownedMaps.length })),
   ...[[3, 3, 2000], [4, 4, 6000], [5, 5, 15000], [6, 6, 40000]].map(([id, n, r]) => ({ id: "rank" + id, group: 7, name: `Reach the rank of ${RANKS[n - 1].name}`, need: n, reward: r, val: () => myRank() })),
 ];
 
