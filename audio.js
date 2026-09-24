@@ -109,15 +109,33 @@ const Snd = (() => {
   const MELODY = [64, 67, 69, 72, 74, 76, 79];
   // a different feel for different places: every map plays one of these tracks
   const TRACKS = {
-    default: { prog: PROG, mel: MELODY, shift: 0 },
+    default: { prog: PROG, mel: MELODY, shift: 0 }, // Sunny Bay: warm and happy
     neon:  { prog: [{ bass: 45, notes: [57, 60, 64, 67] }, { bass: 41, notes: [53, 57, 60, 64] }, { bass: 36, notes: [55, 60, 64, 67] }, { bass: 43, notes: [55, 59, 62, 66] }], mel: [69, 72, 76, 79, 81, 84], shift: 0, arp: true },
     sky:   { prog: [{ bass: 36, notes: [60, 64, 67, 71] }, { bass: 43, notes: [59, 62, 67, 71] }, { bass: 45, notes: [57, 60, 64, 67] }, { bass: 41, notes: [57, 60, 64, 65] }], mel: [72, 74, 76, 79, 81, 84], shift: 0 },
     candy: { prog: [{ bass: 36, notes: [64, 67, 72, 76] }, { bass: 45, notes: [61, 64, 69, 73] }, { bass: 38, notes: [62, 65, 69, 72] }, { bass: 43, notes: [62, 67, 71, 74] }], mel: [76, 79, 81, 84, 86, 88], shift: 0, arp: true },
     ruins: { prog: [{ bass: 38, notes: [50, 53, 57, 60] }, { bass: 43, notes: [55, 58, 62, 65] }, { bass: 41, notes: [53, 57, 60, 64] }, { bass: 40, notes: [52, 55, 59, 62] }], mel: [62, 65, 67, 69, 72], shift: 0 },
-    cold:  { prog: PROG, mel: [67, 71, 74, 79], shift: -2, drums: false },
-    dark:  { prog: [{ bass: 34, notes: [46, 50, 53, 57] }, { bass: 33, notes: [45, 48, 52, 55] }, { bass: 31, notes: [43, 46, 50, 53] }, { bass: 29, notes: [41, 45, 48, 52] }], mel: [58, 60, 62, 65], shift: 0 },
+    // Cabin Lake: cozy, folky fingerpicking, simple warm triads
+    lake:  { prog: [{ bass: 36, notes: [55, 60, 64, 67] }, { bass: 41, notes: [57, 60, 64, 69] }, { bass: 33, notes: [52, 57, 60, 64] }, { bass: 38, notes: [55, 59, 62, 67] }], mel: [60, 62, 64, 67, 69, 72], shift: 0 },
+    // Cherry Blossom Pond: airy koto plucking over a pentatonic scale
+    blossom: { prog: [{ bass: 38, notes: [50, 57, 62, 66] }, { bass: 45, notes: [52, 59, 64, 69] }, { bass: 40, notes: [52, 57, 61, 64] }, { bass: 43, notes: [50, 57, 62, 67] }], mel: [62, 64, 66, 69, 71, 74, 76], shift: 0, arp: true, drums: false },
+    // Desert Oasis: an exotic Phrygian-dominant scale, like a caravan at dusk
+    oasis: { prog: [{ bass: 43, notes: [55, 59, 62, 65] }, { bass: 44, notes: [56, 59, 63, 68] }, { bass: 41, notes: [53, 57, 60, 65] }, { bass: 43, notes: [55, 60, 62, 67] }], mel: [55, 56, 59, 60, 62, 63, 65, 67], shift: 0, arp: true },
+    // Snowy Forest: peaceful, drifting snowfall, no beat
+    forest: { prog: PROG, mel: [67, 71, 74, 79], shift: -2, drums: false },
+    // Frozen Sea: colder, sparser open fifths with a shimmering aurora arpeggio and a slow trudging pulse
+    arctic: { prog: [{ bass: 31, notes: [50, 55, 57, 62] }, { bass: 36, notes: [55, 57, 62, 64] }, { bass: 29, notes: [48, 53, 55, 60] }, { bass: 34, notes: [53, 55, 60, 62] }], mel: [62, 64, 67, 69, 74, 76], shift: -1, arp: true },
+    // Mangrove Swamp: low, murky and minor, no beat
+    swamp: { prog: [{ bass: 34, notes: [46, 50, 53, 57] }, { bass: 31, notes: [43, 46, 50, 55] }, { bass: 29, notes: [41, 44, 48, 53] }, { bass: 33, notes: [45, 48, 52, 55] }], mel: [57, 60, 62, 65, 67], shift: -2, drums: false },
+    // Ember Isle: tense, driving minor with crackling sparks
+    volcano: { prog: [{ bass: 33, notes: [45, 48, 51, 57] }, { bass: 30, notes: [42, 46, 49, 54] }, { bass: 32, notes: [44, 48, 51, 56] }, { bass: 35, notes: [47, 50, 54, 59] }], mel: [57, 60, 63, 66, 69], shift: 0, arp: true },
+    // Deep Abyss: sparse, cold and very low, no beat
+    abyss: { prog: [{ bass: 29, notes: [41, 44, 48, 51] }, { bass: 27, notes: [39, 43, 46, 51] }, { bass: 26, notes: [38, 41, 45, 50] }, { bass: 28, notes: [40, 43, 47, 53] }], mel: [50, 53, 55, 58], shift: -2, drums: false },
+    // Pirate Cove: a jaunty minor-key sea shanty
+    pirate: { prog: [{ bass: 33, notes: [45, 48, 52, 57] }, { bass: 40, notes: [52, 55, 59, 64] }, { bass: 29, notes: [41, 45, 48, 53] }, { bass: 36, notes: [48, 52, 55, 60] }], mel: [57, 60, 62, 64, 67, 69, 72], shift: 0, arp: true },
+    // Starfall Sanctuary: vast, open and ethereal, floating in the void
+    final: { prog: [{ bass: 33, notes: [52, 57, 60, 64] }, { bass: 38, notes: [57, 60, 64, 69] }, { bass: 31, notes: [50, 55, 59, 62] }, { bass: 36, notes: [55, 60, 64, 67] }], mel: [64, 67, 69, 72, 74, 76, 79, 81], shift: 0, arp: true, drums: false },
   };
-  const MAPTRACK = { neon: "neon", alien: "neon", sky: "sky", candy: "candy", ruins: "ruins", forest: "cold", arctic: "cold", swamp: "dark", volcano: "dark", abyss: "dark", pirate: "dark" };
+  const MAPTRACK = { neon: "neon", alien: "neon", sky: "sky", candy: "candy", ruins: "ruins", lake: "lake", blossom: "blossom", oasis: "oasis", forest: "forest", arctic: "arctic", swamp: "swamp", volcano: "volcano", abyss: "abyss", pirate: "pirate", final: "final" };
   let track = TRACKS.default, intensity = 0;
 
   function pad(t, midi, gain) { // warm, slow pad underneath everything
