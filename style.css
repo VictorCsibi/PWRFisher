@@ -340,3 +340,15 @@ html, body { overscroll-behavior: none; }
 
 /* share button on caught fish in the Fish Book */
 .sharebtn { background: #b9e0ff; margin-top: .1em; }
+
+/* the "Add to Home Screen" nudge on iPhone Safari */
+.a2hs {
+  position: fixed; left: 3%; right: 3%; bottom: -6em; z-index: 40;
+  display: flex; align-items: center; gap: .6em; background: #fff; border: .16em solid var(--ink); border-radius: 1em;
+  box-shadow: .2em .2em 0 var(--ink); padding: .6em .7em; font-size: 1em; transition: bottom .35s ease;
+}
+.a2hs.a2hsIn { bottom: 3%; }
+.a2hs.a2hsOut { bottom: -6em; }
+.a2hsIcon { width: 2.2em; height: 2.2em; flex: none; background: #eaf4ff; border-radius: .5em; padding: .2em; }
+.a2hsText { flex: 1; line-height: 1.25; font-family: "Fredoka", sans-serif; font-size: .95em; }
+.a2hsClose { flex: none; width: 1.8em; height: 1.8em; font-size: 1.3em; line-height: 1; padding: 0; background: #f0f0f0; border-radius: 50%; }
