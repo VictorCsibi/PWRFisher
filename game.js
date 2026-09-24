@@ -1744,6 +1744,7 @@ function renderCollection() {
     slot.insertAdjacentHTML("beforeend", n
       ? `<b>${f.name}</b><small style="color:${R.col};font-weight:700">${R.name}</small><small>x${n} &middot; ${fmt(f.value)} &middot; Size ${f.size}${shiny ? " &middot; &#9733;" + shiny : ""}</small>${bookExtra(f)}`
       : `<b>???</b><small style="color:${R.col};font-weight:700">${R.name}</small><small>Size ${f.size}</small>`);
+    if (n) { const sb = document.createElement("button"); sb.className = "act sharebtn"; sb.textContent = "SHARE"; sb.onclick = () => shareCard(f.name); slot.appendChild(sb); }
     grid.appendChild(slot);
   }
   bodyEl.appendChild(grid); bodyEl.scrollTop = scroll;

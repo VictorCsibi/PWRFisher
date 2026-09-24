@@ -295,6 +295,7 @@ function renderExtraFun(section, row, btn) {
   { const wait = Math.max(0, x.diveAt + 600000 - Date.now()); const r = row(ac, "Dive!", wait > 0 ? `Come back in ${Math.ceil(wait / 60000)} min` : "30 seconds underwater: click the shells and pearls"); btn(r, "DIVE", () => { closeModal(); startDive(); }, wait > 0); }
   if (f.stars >= 1) { const r = row(ac, "Legend mode", "For Legend players: fish sell x2, but bites are slower, lines wear faster and there is more junk"); btn(r, x.legendMode ? "ON" : "OFF", () => { x.legendMode = !x.legendMode; save(); }); }
   { const r = row(ac, "Photo", "Save a picture of the game (also press C)"); btn(r, "TAKE PHOTO", () => takePhoto()); }
+  if (f.stats.bestCatchFish) { const r = row(ac, "Share your best catch", `A nice card for your ${f.stats.bestCatchFish} (worth ${fmt(f.stats.bestCatch)}). You can also share any fish from the Fish Book.`); btn(r, "SHARE", () => shareCard(f.stats.bestCatchFish)); }
   if (ex.rest) row(ac, "Restaurant is buying", `${ex.rest.names.join(" and ")} sell for x2 for ${Math.ceil(ex.rest.left / 60)} more min`);
 }
 

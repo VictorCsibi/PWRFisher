@@ -337,3 +337,6 @@ html, body { overscroll-behavior: none; }
 .leadsubmit { margin-top: .8em; padding-top: .6em; border-top: .12em dashed #cbb; text-align: center; }
 .leadsubmitrow { display: flex; gap: .5em; justify-content: center; margin-top: .3em; flex-wrap: wrap; }
 .leadname { font-family: inherit; font-size: 1em; padding: .3em .5em; border: .14em solid var(--ink); border-radius: .5em; width: 10em; }
+
+/* share button on caught fish in the Fish Book */
+.sharebtn { background: #b9e0ff; margin-top: .1em; }
